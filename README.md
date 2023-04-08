@@ -1,4 +1,4 @@
-# Realtime_texting
+# Realtime
 
 # realtime chat application built using ReactJS and FastAPI
 

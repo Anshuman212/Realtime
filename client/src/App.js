@@ -1,12 +1,17 @@
 import React, {useState, useEffect} from 'react';
+
+
 import './App.css';
+import { AuthProvider } from './components/auth';
 
 function App() {
   const [clientId, setClienId] = useState(
     Math.floor(new Date().getTime() / 1000)
   );
+  
     const [websock,setWebsock]=useState();
     const [message,setMessage]= useState([]);
+    const [contactL,setContactL]=useState([]);
     const [messages,setMessages]= useState([]);
       useEffect(()=>{
         const url = "ws://localhost:8000/ws/"+clientId;
@@ -26,11 +31,15 @@ function App() {
         websock.send(message);
         websock.onmessage=(e)=>{
           const message= JSON.parse(e.data);
+          // const contact= ["abc","xyz"];
+          // setContactL([...contactL,contact]);
+          // console.log(contactL);
           setMessages([...messages,message]);
         };
         setMessage([]);
       };
   return (
+   
     <div className = "container">
       <h1>Chat App</h1>
       <h2>Client Id: {clientId} </h2>
@@ -44,8 +53,7 @@ function App() {
               <p className="client">Client Id :{clientId} </p>
               <p className ="message"> {value.message}</p>
             </div>
-            </div>
-            );
+            </div>);
           }else{
             return(
               <div  key = {index} className="receiver-message-container">
@@ -67,10 +75,13 @@ function App() {
         
         ></input>
         <button className ="submit"  onClick={sendMessage}>Send </button>
+      
       </div>
       </div>
     </div>
+   
   );
+  
 }
 
 export default App;

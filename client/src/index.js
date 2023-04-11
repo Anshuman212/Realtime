@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter, Routes,Route,Router} from 'react-router-dom'
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+import reportWebVitals from './reportWebVitals';
+import LoginForm from './components/login';
+import { RequireAuth } from './components/requireAuth';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <BrowserRouter>
+
+  <Routes>
+    
+     <Route path='/' element={<LoginForm/>}></Route> 
+     <Route path='/home' element={<App /> }></Route>
+  
+  </Routes>
+ 
+    </BrowserRouter>
   </React.StrictMode>
 );
 
